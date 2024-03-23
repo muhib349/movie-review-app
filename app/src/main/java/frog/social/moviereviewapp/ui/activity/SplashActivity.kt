@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import frog.social.moviereviewapp.R
+import frog.social.moviereviewapp.ui.activity.signup.SignupActivity
 
 
 class SplashActivity : AppCompatActivity() {

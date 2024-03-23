@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.SignupActivity">
+    tools:context=".ui.activity.signup.SignupActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -19,6 +19,15 @@
         android:layout_below="@id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/layout_content"
         layout="@layout/content_signup"/>
+
+    <include
+        android:id="@+id/layout_primary_btn"
+        layout="@layout/layout_primary_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_20dp" />
 
 </RelativeLayout>

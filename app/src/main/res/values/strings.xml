@@ -7,4 +7,10 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="save">Save</string>
+    <string name="full_name_required">Full name is required!</string>
+    <string name="email_required">Email is required!</string>
+    <string name="invalid_email">Invalid email!</string>
+    <string name="phone_required">Phone is required!</string>
+    <string name="password_minimum_length">Password length should be minimum of 6 characters!</string>
+    <string name="password_mismatch">Confirm password should be same as password!</string>
 </resources>
