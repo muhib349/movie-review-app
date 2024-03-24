@@ -14,4 +14,5 @@
     <string name="password_minimum_length">Password length should be minimum of 6 characters!</string>
     <string name="password_mismatch">Confirm password should be same as password!</string>
     <string name="user_saved_successfully">User has been saved successfully!</string>
+    <string name="movies">Movies</string>
 </resources>
