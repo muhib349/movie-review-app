@@ -1,5 +1,6 @@
 package frog.social.moviereviewapp.ui.activity.signup
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -11,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import frog.social.moviereviewapp.R
 import frog.social.moviereviewapp.data.local.entity.User
 import frog.social.moviereviewapp.databinding.ActivitySignupBinding
+import frog.social.moviereviewapp.ui.activity.movieslist.MovieListActivity
 
 @AndroidEntryPoint
 class SignupActivity : AppCompatActivity() {
@@ -31,6 +33,14 @@ class SignupActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.isUserAdded.observe(this) {
+            it?.let {
+                if(it){
+                    Toast.makeText(this, getString(R.string.user_saved_successfully), Toast.LENGTH_SHORT).show()
+                    navigateToMovieListScreen()
+                }
+            }
+        }
     }
 
     private fun validatedInput(): Boolean{
@@ -64,6 +74,12 @@ class SignupActivity : AppCompatActivity() {
         val password = binding.layoutContent.etPassword.toString()
 
         return User(name = name, email = email, phone = phone, password = password)
+    }
+
+    private fun navigateToMovieListScreen() {
+        val intent = Intent(this, MovieListActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }
