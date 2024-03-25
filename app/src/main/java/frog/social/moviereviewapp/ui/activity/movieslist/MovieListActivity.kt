@@ -2,6 +2,7 @@ package frog.social.moviereviewapp.ui.activity.movieslist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import frog.social.moviereviewapp.R
@@ -20,5 +21,11 @@ class MovieListActivity : AppCompatActivity() {
         setSupportActionBar(binding.myToolbar)
 
         viewModel.getMovies()
+
+        viewModel.moviesData.observe(this){
+            it?.let {
+
+            }
+        }
     }
 }
