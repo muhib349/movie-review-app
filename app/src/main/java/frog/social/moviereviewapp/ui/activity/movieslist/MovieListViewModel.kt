@@ -25,9 +25,9 @@ class MovieListViewModel @Inject constructor(
     private val _errorResponse = MutableLiveData<ErrorResponse>()
     val errorResponse: LiveData<ErrorResponse> = _errorResponse
 
-    fun getMovies(){
+    fun getMovies(pageNumber: Int){
         viewModelScope.launch {
-            val response = repository.getMovies("love")
+            val response = repository.getMovies(pageNumber)
 
             if (response.isSuccessful){
                 _moviesData.value = response.body()

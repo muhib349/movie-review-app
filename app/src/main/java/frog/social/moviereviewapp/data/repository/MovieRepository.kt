@@ -8,7 +8,7 @@ import javax.inject.Inject
 class MovieRepository @Inject constructor(
     private val apiService: ApiService
 ) {
-    suspend fun getMovies(title: String) : Response<MovieSearchResponse> {
-        return apiService.getMovies(title)
+    suspend fun getMovies(pageNumber: Int) : Response<MovieSearchResponse> {
+        return apiService.getMovies(page = pageNumber)
     }
 }
