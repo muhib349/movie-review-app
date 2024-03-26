@@ -22,12 +22,28 @@
         android:id="@+id/layout_content"
         layout="@layout/content_signup"/>
 
-    <include
-        android:id="@+id/layout_primary_btn"
-        layout="@layout/layout_primary_button"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/_20dp" />
+        android:layout_marginBottom="@dimen/_20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/already_member"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_login"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            android:textSize="18sp"
+            android:textColor="@color/purple_500" />
+    </LinearLayout>
 
 </RelativeLayout>

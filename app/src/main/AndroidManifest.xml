@@ -6,7 +6,6 @@
 
     <application
         android:name=".ui.MovieReviewApplication"
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,13 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieReviewApp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activity.login.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.movieslist.MovieListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.signup.SignupActivity"
-            android:exported="true"/>
+            android:exported="false" />
         <activity
             android:name=".ui.activity.splash.SplashActivity"
             android:exported="true">

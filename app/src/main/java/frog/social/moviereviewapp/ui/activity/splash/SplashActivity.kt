@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import frog.social.moviereviewapp.R
 import frog.social.moviereviewapp.data.local.entity.User
 import frog.social.moviereviewapp.databinding.ActivitySplashBinding
+import frog.social.moviereviewapp.ui.activity.login.LoginActivity
 import frog.social.moviereviewapp.ui.activity.movieslist.MovieListActivity
 import frog.social.moviereviewapp.ui.activity.signup.SignupActivity
 
@@ -33,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed(
             {
             if(isUserRegistered()){
-                navigateToMovieListScreen()
+                navigateToLoginScreen()
             }else{
                 navigateToSignupScreen()
             }
@@ -59,8 +60,8 @@ class SplashActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun navigateToMovieListScreen() {
-        val intent = Intent(this, MovieListActivity::class.java)
+    private fun navigateToLoginScreen() {
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 }

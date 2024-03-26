@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:padding="@dimen/_20dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_full_name"
@@ -53,5 +54,14 @@
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_save"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/primary_button_background"
+        android:text="@string/save"
+        android:theme="@style/PrimaryButton" />
 
 </LinearLayout>

@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import frog.social.moviereviewapp.R
 import frog.social.moviereviewapp.data.local.entity.User
 import frog.social.moviereviewapp.databinding.ActivitySignupBinding
+import frog.social.moviereviewapp.ui.activity.login.LoginActivity
 import frog.social.moviereviewapp.ui.activity.movieslist.MovieListActivity
 
 @AndroidEntryPoint
@@ -27,12 +28,7 @@ class SignupActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.myToolbar)
 
-        binding.layoutPrimaryBtn.btnSave.setOnClickListener {
-            if (validatedInput()){
-                viewModel.insertUser(getUser())
-            }
-        }
-
+        initClickListener()
         viewModel.isUserAdded.observe(this) {
             it?.let {
                 if(it){
@@ -43,6 +39,17 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
+    private fun initClickListener(){
+        binding.layoutContent.btnSave.setOnClickListener {
+            if (validatedInput()){
+                viewModel.insertUser(getUser())
+            }
+        }
+
+        binding.tvLogin.setOnClickListener {
+            navigateToLoginActivity()
+        }
+    }
     private fun validatedInput(): Boolean{
         if(TextUtils.isEmpty(binding.layoutContent.etFullName.text)){
             Toast.makeText(this, getString(R.string.full_name_required), Toast.LENGTH_SHORT).show()
@@ -67,19 +74,25 @@ class SignupActivity : AppCompatActivity() {
         return true
     }
 
+    private fun navigateToLoginActivity(){
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+    }
+
     private fun getUser(): User{
-        val name = binding.layoutContent.etFullName.toString()
-        val email = binding.layoutContent.etEmail.toString()
-        val phone = binding.layoutContent.etPhone.toString()
-        val password = binding.layoutContent.etPassword.toString()
+        val name = binding.layoutContent.etFullName.text.toString()
+        val email = binding.layoutContent.etEmail.text.toString()
+        val phone = binding.layoutContent.etPhone.text.toString()
+        val password = binding.layoutContent.etPassword.text.toString()
 
         return User(name = name, email = email, phone = phone, password = password)
     }
 
     private fun navigateToMovieListScreen() {
         val intent = Intent(this, MovieListActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
-        finish()
     }
 
 }
