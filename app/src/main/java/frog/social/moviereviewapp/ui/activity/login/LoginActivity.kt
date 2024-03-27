@@ -1,5 +1,7 @@
 package frog.social.moviereviewapp.ui.activity.login
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +9,11 @@ import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
+import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import frog.social.moviereviewapp.R
 import frog.social.moviereviewapp.databinding.ActivityLoginBinding
@@ -44,7 +51,49 @@ class LoginActivity : AppCompatActivity() {
                 navigateToMovieListScreen()
             }
         }
+
+        if(isBiometricReady(this)){
+            initBiometric()
+        }
     }
+
+    private fun initBiometric(){
+        val executor = ContextCompat.getMainExecutor(this)
+        val biometricPrompt = BiometricPrompt(this, executor, BiometricAuthenticationCallback())
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Biometric Login")
+            .setSubtitle("Log in using your biometric credential")
+            .setNegativeButtonText("Use account password")
+            .build()
+
+        biometricPrompt.authenticate(promptInfo)
+    }
+
+    inner class BiometricAuthenticationCallback : BiometricPrompt.AuthenticationCallback() {
+        override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+            super.onAuthenticationError(errorCode, errString)
+        }
+
+        override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+            super.onAuthenticationSucceeded(result)
+            navigateToMovieListScreen()
+        }
+
+        override fun onAuthenticationFailed() {
+            super.onAuthenticationFailed()
+            Toast.makeText(applicationContext, "Authentication failed",
+                Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
+    private fun hasBiometricCapability(context: Context): Int {
+        return BiometricManager.from(context).canAuthenticate(BIOMETRIC_STRONG)
+    }
+
+    private fun isBiometricReady(context: Context) =
+        hasBiometricCapability(context) == BiometricManager.BIOMETRIC_SUCCESS
 
     private fun navigateToMovieListScreen() {
         val intent = Intent(this, MovieListActivity::class.java)

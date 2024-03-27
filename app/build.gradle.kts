@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "frog.social.moviereviewapp"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -73,6 +73,8 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.12.0")
     kapt("com.github.bumptech.glide:compiler:4.12.0")
+
+    implementation("androidx.biometric:biometric:1.1.0")
 
     implementation("androidx.activity:activity-ktx:1.8.2")
     testImplementation("junit:junit:4.13.2")
